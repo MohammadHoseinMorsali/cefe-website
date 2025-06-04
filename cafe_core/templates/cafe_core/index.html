@@ -1,18 +1,20 @@
+{% load static %} <!-- Add this at the top -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Cozy Corner Cafe</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Updated path -->
+    <link rel="stylesheet" href="{% static 'cafe_core/css/style.css' %}">
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="{% url 'cafe_core:index' %}">Home</a></li>
+                <li><a href="{% url 'cafe_core:menu' %}">Menu</a></li>
+                <li><a href="{% url 'cafe_core:contact' %}">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -29,6 +31,6 @@
     <footer>
         <p>&copy; 2023 The Cozy Corner Cafe</p>
     </footer>
-    <script src="js/script.js" defer></script>
+    <script src="{% static 'cafe_core/js/script.js' %}" defer></script>
 </body>
 </html>

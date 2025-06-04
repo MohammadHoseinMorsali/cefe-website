@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - The Cozy Corner Cafe</title>
+    <link rel="stylesheet" href="{% static 'cafe_core/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'cafe_core:index' %}">Home</a></li>
+                <li><a href="{% url 'cafe_core:menu' %}">Menu</a></li>
+                <li><a href="{% url 'cafe_core:contact' %}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="menu-items">
+            <h2>Our Menu</h2>
+
+            {% comment %}
+            Current hardcoded menu:
+            <h3>Coffee & Espresso</h3>
+            <ul>
+                <li><strong>Espresso:</strong> A rich and intense shot of coffee. - $3.00</li>
+                ...
+            </ul>
+            <h3>Tea</h3>
+            ...
+            {% endcomment %}
+
+            <!-- New dynamic menu -->
+            {% if menu_items_by_category %}
+                {% for category, items in menu_items_by_category.items %}
+                    <h3>{{ category }}</h3>
+                    {% if items %}
+                        <ul>
+                            {% for item in items %}
+                                <li>
+                                    {% if item.image_url %} <!-- Use the property from the model -->
+                                        <img src="{{ item.image_url }}" alt="{{ item.name }}" style="width: 100px; height: 75px; object-fit: cover; margin-right: 10px; float: left;">
+                                    {% endif %}
+                                    <strong>{{ item.name }}:</strong> {{ item.description }} - ${{ item.price }}
+                                    {% if not item.is_available %} (Currently unavailable){% endif %}
+                                    <div style="clear: both;"></div> <!-- Clear float for layout -->
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No items currently available in this category.</p>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>Our menu is currently being updated. Please check back soon!</p>
+            {% endif %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 The Cozy Corner Cafe</p>
+    </footer>
+    <script src="{% static 'cafe_core/js/script.js' %}" defer></script>
+</body>
+</html>

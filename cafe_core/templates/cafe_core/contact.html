@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - The Cozy Corner Cafe</title>
+    <link rel="stylesheet" href="{% static 'cafe_core/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'cafe_core:index' %}">Home</a></li>
+                <li><a href="{% url 'cafe_core:menu' %}">Menu</a></li>
+                <li><a href="{% url 'cafe_core:contact' %}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="contact-form">
+            <h2>Get in Touch</h2>
+            <p>We'd love to hear from you! Send us a message using the form below or reach out via our contact details.</p>
+
+            <!-- Display Django messages -->
+            {% if messages %}
+                <ul class="messages" style="list-style-type: none; padding: 10px; margin-bottom: 15px;">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="background-color: {% if message.tags == 'success' %}#d4edda{% elif message.tags == 'error' %}#f8d7da{% else %}#e2e3e5{% endif %}; color: {% if message.tags == 'success' %}#155724{% elif message.tags == 'error' %}#721c24{% else %}#383d41{% endif %}; padding: 10px; border-radius: 4px;">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if error %} <!-- For the simple error handling in the view -->
+                <p style="color: red; background-color: #f8d7da; padding: 10px; border-radius: 4px; margin-bottom: 15px;">{{ error }}</p>
+            {% endif %}
+
+            <form method="POST" action="{% url 'cafe_core:contact' %}"> <!-- Ensure action points to the view -->
+                {% csrf_token %} <!-- Add CSRF token -->
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required value="{{ request.POST.name | default:'' }}"> <!-- Repopulate on error if possible -->
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required value="{{ request.POST.email | default:'' }}">
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required>{{ request.POST.message | default:'' }}</textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+
+            <h3>Our Contact Information</h3>
+            <p><strong>Address:</strong> 123 Cafe Lane, Flavor Town, CA 90210</p>
+            <p><strong>Phone:</strong> (555) 123-4567</p>
+            <p><strong>Email:</strong> contact@cozycorner.com</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 The Cozy Corner Cafe</p>
+    </footer>
+    <script src="{% static 'cafe_core/js/script.js' %}" defer></script>
+</body>
+</html>

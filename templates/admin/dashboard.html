@@ -1,0 +1,16 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Admin Dashboard</h2>
+    <p>Welcome to the Cozy Corner Cafe Admin Panel, {{ current_user.username }}!</p>
+    <p>From here you can manage various aspects of the website. Use the navigation bar above to access different sections.</p>
+
+    <h3>Quick Links:</h3>
+    <ul>
+        <li><a href="{{ url_for('admin_menu_list') }}">Manage Menu Items</a></li>
+        {# Add other management links here as they are created #}
+        <li><a href="{{ url_for('admin_logout') }}">Logout</a></li>
+    </ul>
+{% endblock %}

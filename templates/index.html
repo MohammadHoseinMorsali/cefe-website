@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Home - The Cozy Corner Cafe{% endblock %}
+
+{% block content %}
+        <section id="home">
+            <h2>Welcome to The Cozy Corner Cafe!</h2>
+            <p>Your perfect getaway for a warm cup of coffee and delicious pastries in a comfortable and inviting atmosphere.</p>
+        </section>
+        <section id="menu">
+            <h2>Our Menu</h2>
+            {% if menu_items %}
+                {% for item in menu_items %}
+                <article>
+                    <h3>{{ item.name }}</h3>
+                    {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+                    <p class="price">{{ item.price }}</p>
+                </article>
+                {% endfor %}
+            {% else %}
+                <p>Our menu is currently being updated. Please check back soon!</p>
+            {% endif %}
+        </section>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>{{ cafe_info.get('about_us_text') | default('The Cozy Corner Cafe was founded with a simple mission: to provide a warm and welcoming space for our community to relax, connect, and enjoy high-quality coffee and homemade treats. We believe in the power of a good cup of coffee to brighten your day. More details coming soon!') }}</p>
+        </section>
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <p><strong>Address:</strong> {{ cafe_info.get('contact_address') | default('123 Cafe Lane, Coffeeville, CA 98765 (Details pending)') }}</p>
+            <p><strong>Phone:</strong> {{ cafe_info.get('contact_phone') | default('(555) 123-4567 (Details pending)') }}</p>
+            <p><strong>Email:</strong> <a href="mailto:{{ cafe_info.get('contact_email') | default('#') }}">{{ cafe_info.get('contact_email') | default('contact@thecozycornercafe.com (Details pending)') }}</a></p>
+
+            <div>
+                <img src="https://placehold.co/600x400?text=Cafe+Location+Map" alt="Placeholder map showing cafe location" id="map-placeholder">
+            </div>
+
+            <form action="#" method="POST"> {# Assuming this form is static or handled by a different mechanism #}
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="Send Message">
+                </div>
+            </form>
+        </section>
+{% endblock %}

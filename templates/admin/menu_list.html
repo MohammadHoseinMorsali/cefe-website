@@ -1,0 +1,38 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Menu Items - Admin{% endblock %}
+
+{% block content %}
+    <h2>Menu Items Management</h2>
+    <a href="{{ url_for('admin_menu_add') }}" class="btn-add-new">Add New Menu Item</a>
+
+    {% if menu_items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in menu_items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.description if item.description else '-' }}</td>
+                        <td>{{ item.price }}</td>
+                        <td class="actions">
+                            <a href="{{ url_for('admin_menu_edit', item_id=item.id) }}" class="edit">Edit</a>
+                            <form method="POST" action="{{ url_for('admin_menu_delete', item_id=item.id) }}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <button type="submit" class="delete">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No menu items found. <a href="{{ url_for('admin_menu_add') }}">Add one now!</a></p>
+    {% endif %}
+{% endblock %}

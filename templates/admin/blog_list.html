@@ -1,0 +1,36 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Blog Posts - Admin{% endblock %}
+
+{% block content %}
+    <h2>Blog Post Management</h2>
+    <a href="{{ url_for('admin_blog_add') }}" class="btn-add-new">Add New Blog Post</a>
+
+    {% if blog_posts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Publication Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in blog_posts %}
+                    <tr>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.publication_date.strftime('%Y-%m-%d %H:%M') if post.publication_date else '-' }}</td>
+                        <td class="actions">
+                            <a href="{{ url_for('admin_blog_edit', post_id=post.id) }}" class="edit">Edit</a>
+                            <form method="POST" action="{{ url_for('admin_blog_delete', post_id=post.id) }}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                <button type="submit" class="delete">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No blog posts found. <a href="{{ url_for('admin_blog_add') }}">Create one now!</a></p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin - Cozy Corner Cafe{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; }
+        .admin-navbar { background-color: #333; overflow: hidden; }
+        .admin-navbar a { float: left; display: block; color: white; text-align: center; padding: 14px 20px; text-decoration: none; }
+        .admin-navbar a:hover { background-color: #ddd; color: black; }
+        .admin-content { padding: 20px; }
+        .admin-container { max-width: 1200px; margin: auto; }
+
+        .flash-messages { list-style-type: none; padding: 0; margin: 0 0 20px 0; }
+        .flash-messages li { padding: 10px; margin-bottom: 10px; border-radius: 4px; }
+        .flash-messages .success { background-color: #dff0d8; color: #3c763d; border: 1px solid #d6e9c6; }
+        .flash-messages .danger { background-color: #f2dede; color: #a94442; border: 1px solid #ebccd1; }
+        .flash-messages .info { background-color: #d9edf7; color: #31708f; border: 1px solid #bce8f1; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .actions a, .actions button { margin-right: 5px; padding: 5px 10px; text-decoration: none; border: 1px solid #ccc; background-color: #f0f0f0; color: #333; border-radius: 3px; cursor: pointer; }
+        .actions button.delete { background-color: #d9534f; color: white; border-color: #d43f3a;}
+        .actions a.edit { background-color: #f0ad4e; color: white; border-color: #eea236;}
+        .btn-add-new { display: inline-block; padding: 10px 15px; background-color: #5cb85c; color: white; text-decoration: none; border-radius: 4px; margin-bottom: 20px; }
+
+        /* Basic Form Styling */
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: .5rem; }
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="email"],
+        .form-group textarea,
+        .form-group select {
+            width: calc(100% - 22px); /* Full width minus padding & border */
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        .form-group textarea { min-height: 100px; }
+        .form-group input[type="submit"], .btn-primary {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: .5rem 1rem;
+            font-size: 1rem;
+            border-radius: .25rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .form-group input[type="submit"]:hover, .btn-primary:hover { background-color: #0056b3; }
+        ul.errors { list-style-type: none; padding: 0; margin: 5px 0 0 0; color: red; font-size: 0.9em;}
+
+    </style>
+</head>
+<body>
+    <nav class="admin-navbar">
+        <div class="admin-container">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_menu_list') }}">Menu Items</a>
+            <a href="{{ url_for('admin_cafe_info') }}">Cafe Settings</a>
+            <a href="{{ url_for('admin_blog_list') }}">Blog Posts</a>
+            <!-- Add more links here as you add more admin sections -->
+            <a href="{{ url_for('home') }}" style="float:right;">View Main Site</a>
+            <a href="{{ url_for('admin_logout') }}" style="float:right;">Logout ({{ current_user.username }})</a>
+        </div>
+    </nav>
+
+    <div class="admin-content">
+        <div class="admin-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="flash-messages">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>

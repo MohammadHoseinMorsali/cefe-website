@@ -1,0 +1,54 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Manage Cafe Information - Admin{% endblock %}
+
+{% block content %}
+    <h2>Manage Cafe Information</h2>
+    <form method="POST" action="{{ url_for('admin_cafe_info') }}">
+        {{ form.hidden_tag() }} {# CSRF token #}
+
+        <div class="form-group">
+            {{ form.about_us_text.label }}
+            {{ form.about_us_text(class="form-control", rows=8) }}
+            {% if form.about_us_text.errors %}
+                <ul class="errors">
+                    {% for error in form.about_us_text.errors %}<li>{{ error }}</li>{% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.contact_address.label }}
+            {{ form.contact_address(class="form-control", size=50) }}
+            {% if form.contact_address.errors %}
+                <ul class="errors">
+                    {% for error in form.contact_address.errors %}<li>{{ error }}</li>{% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.contact_phone.label }}
+            {{ form.contact_phone(class="form-control", size=30) }}
+            {% if form.contact_phone.errors %}
+                <ul class="errors">
+                    {% for error in form.contact_phone.errors %}<li>{{ error }}</li>{% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.contact_email.label }}
+            {{ form.contact_email(class="form-control", size=50) }}
+            {% if form.contact_email.errors %}
+                <ul class="errors">
+                    {% for error in form.contact_email.errors %}<li>{{ error }}</li>{% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.submit(class="btn-primary") }}
+        </div>
+    </form>
+{% endblock %}

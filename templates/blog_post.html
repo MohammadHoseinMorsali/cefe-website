@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title | default('Blog Post') }} - The Cozy Corner Cafe{% endblock %}
+
+{% block head_extra %}
+    {# Add any specific meta tags for blog posts if needed, e.g., for SEO #}
+{% endblock %}
+
+{% block content %}
+<div id="single-post">
+    <article>
+        <h1>{{ post.title | default('Sample Post Title') }}</h1>
+        <p class="post-meta">
+            Published on: {{ post.publication_date.strftime('%B %d, %Y') if post.publication_date else 'N/A' }}
+            {# Assuming you might add an author later: by {{ post.author.username | default('Our Team') }} #}
+        </p>
+
+        <div class="post-content">
+            {{ post.content | default('Sample post content will appear here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.') | safe }}
+        </div>
+
+        <hr>
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="{{ url_for('blog_index') if 'blog_index' in_routes else '#' }}">Back to Blog Index</a>
+        </p>
+    </article>
+</div>
+{% endblock %}

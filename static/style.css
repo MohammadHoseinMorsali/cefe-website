@@ -74,6 +74,75 @@ footer {
     margin: 20px auto; /* Center the map and add some margin */
 }
 
+/* Blog Styles */
+#blog-listing h1, #single-post h1 {
+    text-align: center;
+    margin-bottom: 1em;
+    color: #333; /* Match section h2 */
+    font-family: 'Georgia', serif; /* Match section h2 */
+}
+
+.blog-summary {
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #eee;
+}
+
+.blog-summary h2 {
+    margin-top: 0;
+    font-family: 'Georgia', serif; /* Consistent heading font */
+}
+
+.blog-summary h2 a {
+    text-decoration: none;
+    color: #5D4037; /* A brownish color for links, adjust as needed */
+}
+
+.blog-summary h2 a:hover {
+    color: #A0522D; /* Lighter brown on hover */
+    text-decoration: underline;
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 0.5em;
+}
+
+.blog-summary .read-more {
+    display: inline-block;
+    margin-top: 0.5em;
+    color: #8B4513; /* Medium brown */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.blog-summary .read-more:hover {
+    text-decoration: underline;
+}
+
+#single-post .post-meta {
+    text-align: center;
+    margin-bottom: 2em; /* More space after meta on single post */
+}
+
+.post-content {
+    line-height: 1.7; /* Slightly more line height for readability */
+    margin-top: 1em;
+}
+
+.post-content p {
+    margin-bottom: 1em;
+}
+
+.post-content h2, .post-content h3, .post-content h4 {
+    font-family: 'Georgia', serif;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #444;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     nav ul {

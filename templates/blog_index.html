@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - The Cozy Corner Cafe{% endblock %}
+
+{% block content %}
+<div id="blog-listing">
+    <h1>Our Blog</h1>
+
+    <article class="blog-summary">
+        <h2><a href="#">Sample Blog Post Title 1</a></h2>
+        <p class="post-meta">Published on: January 1, 2024 by Author Name</p>
+        <p>This is a short summary of the first blog post. It gives a little teaser of what the content is about, encouraging readers to click through and read more.</p>
+        <a href="#" class="read-more">Read More &raquo;</a>
+    </article>
+
+    <article class="blog-summary">
+        <h2><a href="#">Exploring Coffee Varieties</a></h2>
+        <p class="post-meta">Published on: January 10, 2024 by Jane Barista</p>
+        <p>Dive deep into the world of coffee beans, from Arabica to Robusta, and discover what makes each unique. We explore roasting techniques and flavor profiles.</p>
+        <a href="#" class="read-more">Read More &raquo;</a>
+    </article>
+
+    <article class="blog-summary">
+        <h2><a href="#">The Art of Pastry Making</a></h2>
+        <p class="post-meta">Published on: January 20, 2024 by Chef Patissier</p>
+        <p>A sneak peek into our kitchen where our chefs create delicious pastries. Learn about the dedication and skill that goes into every croissant and cake.</p>
+        <a href="#" class="read-more">Read More &raquo;</a>
+    </article>
+
+    <!-- Pagination (Optional Placeholder) -->
+    {#
+    <nav class="pagination">
+        <a href="#">&laquo; Previous</a>
+        <span>Page 1 of 3</span>
+        <a href="#">Next &raquo;</a>
+    </nav>
+    #}
+</div>
+{% endblock %}

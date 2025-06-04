@@ -1,0 +1,131 @@
+/* Basic CSS for The Cozy Corner Cafe */
+
+body {
+    background-color: #f5f5dc; /* Light cream */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #8B4513; /* Medium brown */
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Georgia', serif;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    background-color: #A0522D; /* Sienna */
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 1em;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #CD853F; /* Peru */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+section h2 {
+    font-family: 'Georgia', serif;
+    color: #333;
+}
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: #333; /* Dark grey */
+    color: white;
+    font-size: 0.9em;
+}
+
+#map-placeholder {
+    max-width: 100%;
+    height: auto;
+    display: block; /* To remove extra space below the image */
+    margin: 20px auto; /* Center the map and add some margin */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Should already be block, but good for explicitness if it was flex */
+    }
+
+    nav ul li {
+        display: block; /* Stack nav items vertically */
+        margin-right: 0;
+        margin-bottom: 5px; /* Add some space between stacked nav items */
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block; /* Make links take full width for easier tapping */
+    }
+
+    main {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    section {
+        padding: 15px; /* Adjust padding for sections */
+    }
+
+    /* Menu items already stack, this is a good place for specific menu item adjustments if needed */
+    #menu article {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Slightly reduce base font size for very small screens */
+    }
+
+    header h1 {
+        font-size: 1.8em; /* Reduce heading font size */
+    }
+
+    section h2 {
+        font-size: 1.5em; /* Reduce section heading font size */
+    }
+
+    nav ul li a {
+        padding: 0.8em; /* Adjust padding for smaller nav links */
+    }
+
+    /* Further adjustments for contact form inputs if they appear too large */
+    #contact form input[type="text"],
+    #contact form input[type="email"],
+    #contact form textarea {
+        width: calc(100% - 22px); /* Adjust width considering padding and border */
+    }
+}
